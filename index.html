@@ -9,10 +9,17 @@
     <div class="topnav" id="taskbar">
         <a> <input onclick="" type="button" value="Home" id=""></a>
         <a><input onclick="blocks()" type="button" value="Tutorial" id="clickableBlock"></a>
-        
+        <a><form action="C:\Users\danie\OneDrive\Documents\GitHub\ML-Frontend\results.html" method="get">
+            <input type="submit" value="Results" 
+                 name="Submit" id="frm1_submit" />
+        </form></a>
+        <a><form action="C:\Users\danie\OneDrive\Documents\GitHub\ML-Frontend\results.html" method="get">
+                <input type="submit" value="Terminal" 
+                     name="terminal" id="terminal" />
+        </form></a>
 
     </div>
-    <input onclick="blocks1()" type="button" value="Hide This Bar" id="barHide" class= "bar">
+    <input onclick="blocks1()" type="button" value="Hide This Bar" id="barHide" class= "test">
     <div class="heading">
         <h1> MAHacks IV: Machine Learning Sandbox </h1>
     </div>
@@ -33,8 +40,13 @@
         </div>
         <div class="tooltip">
             <button onclick="toolbarAdd()" class="toolbar-button"> Add Normalizer</button>
-
-            <span class="tooltiptext">Tooltip text</span>
+            <span class="tooltiptext"> Normalization takes the inputs of a function and changes them so that the scale is similar to the both of them. For example,
+                 normalization will take 2 inputs of 1-1000 and 1-10 and normalize both of them to 0-1 with the larger ranges having 
+                 more decimal places</span>
+        </div>
+        <div class="tooltip">
+                <button onclick="toolbarAdd()" class="toolbar-button"> Upload</button>
+                <span class="tooltiptext"> Upload your sample data set to be processed by the neural network</span>
         </div>
     </div>
     <div id="clock" class="myLife"> Hey everybody this is a simulator that can help
@@ -47,28 +59,23 @@
 <footer>
     <script type="text/javascript">
         function blocks() {
-            var elem = document.getElementById("clickableBlock");
-            if (elem.value == "Tutorial") elem.value = "Back to Blocks";
-            else elem.value = "Tutorial";
-            var myClock = document.getElementById('clock');
+
+        }
+        function blocks1() {
+            var elem = document.getElementById("barHide");
+            if (elem.value == "Hide the Bar") elem.value = "Show the Bar";
+            else elem.value = "Hide the Bar";
+            var myClock = document.getElementById('taskbar');
 
             var displaySetting = myClock.style.display;
             if (displaySetting == 'block') {
                 myClock.style.display = 'none';
-                clockButton.innerHTML = 'Show clock';
+
             }
             else {
                 myClock.style.display = 'block';
                 clockButton.innerHTML = 'Hide clock';
             }
-        }
-        function blocks1() {
-            var taskbar = document.getElementById('taskbar');
-            if()
-            taskbar.style.display = 'none';
-            var up = document.getElementById("barHide")
-            up.style.display='block';
-
         }
     </script>
     <script src="main.js"></script>

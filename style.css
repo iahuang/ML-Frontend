@@ -7,10 +7,16 @@ h1 {
     padding:10px;
     font-size: 28;
     size: 70px;
-    padding-top: 0px;
+    padding-top: px;
     padding-bottom: 40px;
     width:100%;
     height: 40px;
+}
+.test{
+position:fixed;
+top:0px;
+left:270px;
+z-index: 100;
 }
 
 .toolbar {
@@ -18,6 +24,7 @@ h1 {
     padding:20px;
     padding-left: 60px;
     padding-top: 0px;
+    z-index: 0;
 }
 .sandbox {
     background-color: rgb(55, 60, 80);
@@ -38,6 +45,7 @@ h1 {
 button {
     border-style: hidden;
     font-family: Arial, Helvetica, sans-serif;
+    z-index: 0;
 }
 .nodetext {
     user-select: none;
@@ -115,6 +123,7 @@ body {
     box-sizing: content-box; 
     width:105%;
     height:auto;
+    z-index: 100;
 }
 .topnav a {
     float: left;
@@ -267,9 +276,4 @@ body {
 .topnav a.active {
     background-color: #4CAF50;
     color: white;
-}
-.bar{
-    position:fixed;
-    top:0px;
-    left:120px;
 }
