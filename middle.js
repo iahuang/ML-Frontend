@@ -1,6 +1,8 @@
 var socket = io('http://10.99.1.79:8080');
 socket.on('connect', function(){});
-socket.on('event', function(data){});
+socket.on('currentloss', function(data){
+    
+});
 socket.on('disconnect', function(){});
 
 function buildPort(port) {
