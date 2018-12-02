@@ -1,7 +1,7 @@
 var socket = io('http://10.99.1.79:8080');
 socket.on('connect', function(){});
 socket.on('currentloss', function(data){
-    
+    document.getElementById("status").innerText = data;
 });
 socket.on('disconnect', function(){});
 

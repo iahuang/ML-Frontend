@@ -1,16 +1,20 @@
 let nodeTemplate = `
-<div class="node" data-type="sample">
+<div class="node" data-type="%dtype">
 
-<p class="nodetext"> Wow this is a node </p>
+<p class="nodetext"> %name </p>
 <span id="inputs" class="portspan">
-<div class="port" data-type="input"></div>
+%inputs
 </span>
 <span id="outputs" class="portspan">
-<div class="port" data-type="output"></div>
+%outputs
 </span>
 
-</div>
-`;
+</div>`;
+let displayNames = {
+    "mlp":"Multi-Layer Perceptron",
+    "add":"Addition",
+    "ewm":"Multiplication"
+}
 
 var dragOrigin = null;
 var mousex = null;
@@ -81,9 +85,14 @@ function initPortsets(nodeObject, portSpan) {
         }
     }
 }
-
-function toolbarAdd() {
-    var newNode = $(nodeTemplate);
+function generateTemplate(name, a, b) {
+    var out = nodeTemplate.replace("%dtype",name);
+    out = out.replace("%inputs",'<div class="port" data-type="input"></div>'.repeat(a));
+    out = out.replace("%outputs",'<div class="port" data-type="output"></div>'.repeat(b));
+    return out.replace("%name",displayNames[name]);
+}
+function toolbarAdd(name, a, b) {
+    var newNode = $(generateTemplate(name,a,b));
     $(".sandbox").prepend(newNode);
     var nodeElement = newNode.get(0);
     nodeElement.dataset.id = currentNodeId;
@@ -103,6 +112,7 @@ function mouseDown(e) {
 }
 
 function redraw () {
+    canvOffset = offset(canvas);
     ctx.translate(-canvOffset.left, -canvOffset.top);
     Object.keys(nodes).forEach(function(key) {
         let node = nodes[key];
@@ -124,6 +134,7 @@ function redraw () {
 }
 
 function mouseMove(e) {
+    canvOffset = offset(canvas);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     if (dragTarget) {
         dragTarget.style.left = e.pageX-dragOffset[0];
@@ -153,6 +164,10 @@ function onClickNode(e) {
 
 function onReleaseNode(e) {
     dragTarget = null;
+}
+
+function onHoverNode(e) {
+
 }
 
 function getConnected(port) {
