@@ -8,10 +8,11 @@
 <body>
     <div class="topnav" id="taskbar">
         <a> <input onclick="" type="button" value="Home" id=""></a>
-        <a> <input onclick="blocks()" type="button" value="Tutorial" id="clickableBlock"></a>
-        <a> <input onclick="blocks1()" type="button" value="Hide This Bar" id="barHide"></a>
+        <a><input onclick="blocks()" type="button" value="Tutorial" id="clickableBlock"></a>
+        
 
     </div>
+    <input onclick="blocks1()" type="button" value="Hide This Bar" id="barHide" class= "bar">
     <div class="heading">
         <h1> MAHacks IV: Machine Learning Sandbox </h1>
     </div>
@@ -62,9 +63,12 @@
             }
         }
         function blocks1() {
-            var taskbar = document.getElementById('taskBar');
+            var taskbar = document.getElementById('taskbar');
+            if()
             taskbar.style.display = 'none';
-            var up = document.getElementById(b)
+            var up = document.getElementById("barHide")
+            up.style.display='block';
+
         }
     </script>
     <script src="main.js"></script>
@@ -74,7 +78,9 @@
     div#taskbar {
         display: block;
     }
-
+    div#barHide{
+        display: block;
+    }
     div#clock {
         display: none;
     }
