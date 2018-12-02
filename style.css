@@ -1,8 +1,13 @@
 h1 {
     font-family: 'Ubuntu', sans-serif;
-    color: rgb(173, 173, 173);
+    color: #f2f2f2;
     display: inline-block;
 
+}
+h2 {
+    font-family: 'Ubuntu', sans-serif;
+    color: rgb(173, 173, 173);
+    display: inline-block;
 }
 .heading {
     display: inline-block;
@@ -96,10 +101,7 @@ body {
     color: #b2b2b6;
     border-radius: 10px;
 }
-.upload {
-    background-color: #4CAF50;
-    color: #ddd;
-}
+
 .tooltip {
     position: relative;
     display: inline-block
@@ -260,4 +262,8 @@ p {
 }
 .buffersmall{
     padding-left: 100px;
+}
+.upload {
+    background-color: #4CAF50;
+    color: #ddd;
 }

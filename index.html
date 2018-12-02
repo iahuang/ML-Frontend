@@ -18,10 +18,9 @@
         <h1> MAHacks IV: Machine Learning Sandbox </h1>
     </div>
     <div class="toolbar">
-        <h1> Neural Network Code Blocks
+        <h2> Neural Network Code Blocks
 
-            <h1 id> </h1>
-        </h1>
+        </h2>
     </div>
 
     <div class="toolbar">
@@ -40,12 +39,6 @@
                 <button onclick="toolbarAdd('ewm', 2, 1)" class="toolbar-button"> x </button>
                 <span class="tooltiptext"> Multiplication takes the data from two outputs and returns the product </span>
             </div>
-        <div class="tooltip">
-            <button onclick="toolbarAdd('null', 1, 1)" class="toolbar-button"> Normalizer</button>
-            <span class="tooltiptext"> Normalization takes the inputs of a function and changes them so that the scale is similar to the both of them. For example,
-                 normalization will take 2 inputs of 1-1000 and 1-10 and normalize both of them to 0-1 with the larger ranges having 
-                 more decimal places</span>
-        </div>
         <div class="tooltip ">
                 <button onclick="upload(nodes);" class="toolbar-button upload"> Upload</button>
                 <span class="tooltiptext"> Upload your sample data set to be processed by the neural network</span>
@@ -69,6 +62,7 @@
 </body>
 <footer>
     <script type="text/javascript">
+    var hidden = false;
         function blocks() {
     // get the clock
     var myClock = document.getElementById('clock');
@@ -99,7 +93,7 @@
             var displaySetting = myClock.style.display;
 
 // now toggle the clock and the button text, depending on current state
-            if (displaySetting == 'block') {
+            if (!hidden) {
     // clock is visible. hide it
             myClock.style.display = 'none';
     // change button text
@@ -110,7 +104,8 @@
             myClock.style.display = 'block';
     //      change button text
             elem.value = 'Show Bar';
-            }   
+            }  
+            hidden = !hidden;
         }
     </script>
     <script src="main.js"></script>

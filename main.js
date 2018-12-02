@@ -10,6 +10,7 @@ let nodeTemplate = `
 </span>
 
 </div>`;
+
 let displayNames = {
     "mlp":"Multi-Layer Perceptron",
     "add":"Addition",
