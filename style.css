@@ -1,9 +1,9 @@
 h1 {
     font-family: 'Ubuntu', sans-serif;
-    color: #55DDE0;
+    color: rgb(173, 173, 173);
 }
 .heading {
-    background-color: #F6AE2D;
+    background-color: rgb(46, 50, 66);
     padding:10px;
     font-size: 28;
     size: 70px;
@@ -11,22 +11,15 @@ h1 {
     padding-bottom: 40px;
     height: 40px;
 }
-.subheading{
-    background-color:#33658A;
-    padding:70px;
-    font-size: 14;
-    padding-top: 10px;
-    padding-bottom: 35px;
-    height: 20px;
-}
+
 .toolbar {
-    background-color: #33658A;
+    /*background-color: rgb(46, 50, 66);*/
     padding:20px;
     padding-left: 60px;
     padding-top: 0px;
 }
 .sandbox {
-    background-color: #F26419;
+    background-color: rgb(55, 60, 80);
     height: 100%;
     margin: 0px;
 }
@@ -74,7 +67,7 @@ button {
     pointer-events:none;
 }
 body {
-    background-color:#33658A;
+    background-color:rgb(46, 50, 66);
 }
 .toolbar-button{
     background-color: #6f717a;
