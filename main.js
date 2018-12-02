@@ -155,8 +155,32 @@ function onReleaseNode(e) {
     dragTarget = null;
 }
 
+function getConnected(port) {
+    if (port.type == "input") {
+        return nodes[port.connected.id].outputs[port.connected.index];
+    } else {
+        return nodes[port.connected.id].inputs[port.connected.index];
+    }
+}
+
+function releaseConnected(port) {
+    if (port.type == "input") {
+        nodes[port.connected.id].outputs[port.connected.index].connected = null;
+    } else {
+        nodes[port.connected.id].inputs[port.connected.index].connected = null;
+    }
+}
+
 function onClickPort(e) {
     portOrigin = e.target;
+}
+
+function getPort(port) {
+    if (port.dataset.type == "input") {
+        return getNode(port.parentNode.parentNode).inputs[port.dataset.index];
+    } else {
+        return getNode(port.parentNode.parentNode).outputs[port.dataset.index];
+    }
 }
 
 function onReleasePort(e) {
@@ -171,14 +195,19 @@ function onReleasePort(e) {
 
     if (targetNodeElement === originNodeElement) {
     } else if (e.target.dataset.type != portOrigin.dataset.type) {
-        if (e.target.dataset.type == "input") {
-            console.log(e.target.dataset);
-            targetNode.inputs[e.target.dataset.index].connected = {"id":originNode.id,"index":portOrigin.dataset.index};
-            originNode.outputs[portOrigin.dataset.index].connected = {"id":targetNode.id,"index":e.target.dataset.index};
-        } else {
-            targetNode.outputs[e.target.dataset.index].connected = {"id":originNode.id,"index":portOrigin.dataset.index};
-            originNode.inputs[portOrigin.dataset.index].connected = {"id":targetNode.id,"index":e.target.dataset.index};
+        var target = getPort(e.target);
+        var origin = getPort(portOrigin);
+
+        //console.log(e.target.dataset);
+        if (target.connected) {
+            releaseConnected(target);
+            target.connected = null;
         }
+        if (origin.connected) {
+            releaseConnected(origin);
+        }
+        target.connected = {"id":originNode.id,"index":portOrigin.dataset.index};
+        origin.connected = {"id":targetNode.id,"index":e.target.dataset.index};
     }
     mouseMove(e);
 }
