@@ -1,9 +1,9 @@
 h1 {
     font-family: 'Ubuntu', sans-serif;
-    color: #b2b2b6;
+    color: #F7F7F2;
 }
 .heading {
-    background-color: #25272e;
+    background-color: #121113;
     padding:10px;
     font-size: 28;
     size: 70px;
@@ -12,7 +12,7 @@ h1 {
     height: 40px;
 }
 .subheading{
-    background-color:#2b2d36;
+    background-color:#222725;
     padding:70px;
     font-size: 10;
     padding-top: 10px;
@@ -20,13 +20,13 @@ h1 {
     height: 20px;
 }
 .toolbar {
-    background-color: #2b2d36;
+    background-color: #222725;
     padding:20px;
     padding-left: 60px;
     padding-top: 10px;
 }
 .sandbox {
-    background-color: #444750;
+    background-color: #58614D;
     height: 100%;
     margin: 0px;
 }
@@ -74,7 +74,7 @@ button {
     pointer-events:none;
 }
 body {
-    background-color:#383c46;
+    background-color:#121113;
 }
 .toolbar-button{
     background-color: #6f717a;
@@ -83,7 +83,6 @@ body {
     color: #b2b2b6;
     border-radius: 10px;
 }
-#
 
 .tooltip {
     position: relative;

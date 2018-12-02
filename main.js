@@ -1,5 +1,5 @@
 let nodeTemplate = `
-<div class="node">
+<div class="node" data-type="sample">
 
 <p class="nodetext"> Wow this is a node </p>
 <span id="inputs" class="portspan">

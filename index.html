@@ -17,6 +17,7 @@
  }
 </script>
 <head>
+    <script src="socket.io.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -29,6 +30,7 @@
         <h1>   Neural Network Code Blocks 
         <input onclick="blocks()" type="button" value="Tutorial" id="clickableBlock"
                 class="toolbar-button">
+        <button class="toolbar-button" onclick="upload(nodes)">Upload</button>
         <h1 id> </h1>
         </h1>
     </div>
@@ -54,6 +56,7 @@
 </body>
 <footer>
     <script src="main.js"></script>
+    <script src="middle.js"></script>
 </footer>
 <style>
     div#clock {
