@@ -18,5 +18,11 @@ async def message(sid, data):
 def disconnect(sid):
     print('disconnect ', sid)
 
+async def handle(request):
+    print(request);
+    return web.Response(text="oofus");
+
+app.add_route(web.get("/upload", handle))
+
 if __name__ == '__main__':
     web.run_app(app)
