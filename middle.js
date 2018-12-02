@@ -5,6 +5,8 @@ socket.on('currentloss', function(data){
 });
 socket.on('disconnect', function(){});
 
+var files = {"xdata":null, "ydata":null};
+
 function buildPort(port) {
     var out = {};
     out.type = port.type;
@@ -36,8 +38,29 @@ function buildGraph(nodes) {
     return graph;
 }
 
-function upload(nodes) {
-    console.log("Uploading...");
-    socket.emit('uploadgraph', buildGraph(nodes));
+function readFileInput(id, exit) {
+    var i = document.getElementById(id);
+    var f = i.files[0];
+    var fr = new FileReader();
+    fr.onload = function(e) {
+        var text = fr.result;
+        files[id] = text;
+        if (exit) {
+            _upload(nodes);
+        }
+    }
+    fr.readAsText(f);
+
+    
 }
 
+function upload(nodes) {
+    console.log("Uploading...");
+    readFileInput("xdata");
+    readFileInput("ydata", true);
+
+}
+
+function _upload(nodes) {
+    socket.emit('uploadgraph', [files.xdata, files.ydata, buildGraph(nodes)]);
+}
