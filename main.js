@@ -8,13 +8,22 @@ let nodeTemplate = `
 <span id="outputs" class="portspan">
 %outputs
 </span>
-
+%extras
 </div>`;
 
 let displayNames = {
-    "mlp":"Multi-Layer Perceptron",
+    "mlp":"Simple Layer",
     "add":"Addition",
     "ewm":"Multiplication"
+}
+
+let extras = {
+    "mlp":`
+<input placeholder="Layer size" style="margin-right: 10px;" id="layerentry"></input>
+<div class="tooltip">
+<p style="display: inline-block;">?</p>
+<span class="tooltiptext"> The number of nodes in the layer. </span>
+</div>`
 }
 
 var dragOrigin = null;
@@ -90,6 +99,11 @@ function generateTemplate(name, a, b) {
     var out = nodeTemplate.replace("%dtype",name);
     out = out.replace("%inputs",'<div class="port" data-type="input"></div>'.repeat(a));
     out = out.replace("%outputs",'<div class="port" data-type="output"></div>'.repeat(b));
+    if (extras[name]) {
+        out = out.replace("%extras","<br>"+extras[name]);
+    } else {
+        out = out.replace("%extras","");
+    }
     return out.replace("%name",displayNames[name]);
 }
 function toolbarAdd(name, a, b) {
