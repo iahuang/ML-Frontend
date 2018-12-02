@@ -1,27 +1,62 @@
+function download(filename, text) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+  
+    element.style.display = 'none';
+    document.body.appendChild(element);
+  
+    element.click();
+  
+    document.body.removeChild(element);
+}
+
 var socket = io('http://10.99.1.79:8080');
 socket.on('connect', function(){});
 socket.on('currentloss', function(data){
     document.getElementById("status").innerText = data;
+    setPredict(true);
+});
+socket.on('prediction', function(data){
+    var out = [];
+    for (var i=0; i<data.length; i++) {
+        let line = data[i];
+        out.push(line.join(", "));
+    }
+    return out.join("\n");
 });
 socket.on('disconnect', function(){});
 
 var files = {"xdata":null, "ydata":null};
 var ready = false;
+var ready2 = false;
+var trained = false;
 
 function setReady(r) {
     if (ready!=r) {
         document.getElementById("tbutton").classList.toggle("disabled");
-        document.getElementById("pbutton").classList.toggle("disabled");
-        console.log(ready);
         if (!ready) {
             document.getElementById("stats").setAttribute("style","");
         } else {
             document.getElementById("stats").style.display = "none";
         }
     }
+    
     ready = r;
 }
-
+function setPredict(r) {
+    if (ready2!=r) {
+        document.getElementById("pbutton").classList.toggle("disabled");
+        if (!ready2) {
+            document.getElementById("pdata").setAttribute("style","");
+            document.getElementById("plabel").setAttribute("style","");
+        } else {
+            document.getElementById("pdata").style.display = "none";
+            document.getElementById("plabel").style.display = "none";
+        }
+    }
+    ready2 = r;
+}
 function buildPort(port) {
     var out = {};
     out.type = port.type;
@@ -101,6 +136,10 @@ function send(nodes) {
         socket.emit('uploadgraph', [files.xdata, files.ydata, buildGraph(nodes)]);
     }
 }
-function predict(node){
-    
+
+function predict(nodes){
+    readFileInput("pdata",predict2);
+}
+function predict2() {
+    socket.emit('predict', [files.pdata, buildGraph(nodes)]);
 }

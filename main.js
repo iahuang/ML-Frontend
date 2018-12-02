@@ -1,6 +1,6 @@
 let nodeTemplate = `
 <div class="node" data-type="%dtype">
-
+<span class="delete" id="xbutton">x</span>
 <p class="nodetext"> %name </p>
 <span id="inputs" class="portspan">
 %inputs
@@ -121,6 +121,7 @@ function generateTemplate(name, a, b) {
     return out.replace("%name",displayNames[name]);
 }
 function toolbarAdd(name, a, b) {
+    setPredict(false);
     var newNode = $(generateTemplate(name,a,b));
     $(".sandbox").prepend(newNode);
     var nodeElement = newNode.get(0);
@@ -132,7 +133,7 @@ function toolbarAdd(name, a, b) {
     nodeElement.addEventListener("mousedown", onClickNode);
     nodeElement.addEventListener("mouseup", onReleaseNode);
 
-    
+    nodeElement.querySelector("#xbutton").addEventListener("mousedown", onDeleteNode);
     initPortsets(nodeObject, nodeElement.querySelector("#inputs"));
     initPortsets(nodeObject, nodeElement.querySelector("#outputs"));
 }
@@ -195,6 +196,29 @@ function onReleaseNode(e) {
     dragTarget = null;
 }
 
+function onDeleteNode(e) {
+    setPredict(false);
+    var node = getNode(e.target.parentNode);
+    console.log(node);
+    for (var i=0;i<node.inputs.length;i++) {
+        var port = node.inputs[i];
+        if (port.connected) {
+            releaseConnected(port);
+        }  
+        
+    }
+    for (var i=0;i<node.outputs.length;i++) {
+        var port = node.outputs[i];
+        if (port.connected) {
+            releaseConnected(port);
+        }
+    }
+    node.element.parentNode.removeChild(node.element);
+    delete nodes[e.target.parentNode.dataset.id];
+
+    
+}
+
 function onHoverNode(e) {
 
 }
@@ -239,6 +263,7 @@ function onReleasePort(e) {
 
     if (targetNodeElement === originNodeElement) {
     } else if (e.target.dataset.type != portOrigin.dataset.type) {
+        setPredict(false);
         var target = getPort(e.target);
         var origin = getPort(portOrigin);
 
