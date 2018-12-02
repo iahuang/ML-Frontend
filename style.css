@@ -118,6 +118,140 @@ body {
     text-align: center;
     display: inline;
     width: max-content;
+    h1 {
+    font-family: 'Ubuntu', sans-serif;
+    color: #55DDE0;
+}
+.heading {
+    background-color: #F6AE2D;
+    padding:10px;
+    font-size: 28;
+    size: 70px;
+    padding-top: 0px;
+    padding-bottom: 40px;
+    height: 40px;
+}
+.subheading{
+    background-color:#33658A;
+    padding:70px;
+    font-size: 14;
+    padding-top: 10px;
+    padding-bottom: 35px;
+    height: 20px;
+}
+.toolbar {
+    background-color: #33658A;
+    padding:20px;
+    padding-left: 60px;
+    padding-top: 0px;
+}
+.sandbox {
+    background-color: #F26419;
+    height: 100%;
+    margin: 0px;
+}
+.node {
+    position: absolute;
+    background-color: #6f717a;
+    height: 120px;
+    width: 200px;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 4px #000000;
+}
+button {
+    border-style: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.nodetext {
+    user-select: none;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.port {
+    height: 12px;
+    width: 12px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    border-style: solid;
+    border-color: #33658A
+}
+.sandbox-canvas {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    position: absolute;
+    pointer-events:none;
+}
+body {
+    background-color:#33658A;
+}
+.toolbar-button{
+    background-color: #6f717a;
+    font-size: 20;
+    padding: 10px;
+    color: #b2b2b6;
+    border-radius: 10px;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 220px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 2;
+}
+.myLife {
+    display: none;
+    font-family: 'Ubuntu', sans-serif;
+
+    color: #55DDE0;
+    
+}
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.topnav {
+    background-color: #D3D3D3;
+    overflow: hidden;
+    position: fixed;
+    top:0px;
+    box-sizing: content-box; 
+    width:105%;
+    height:auto;
+    display:inline-block
+}
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    display: inline;
+    width: max-content;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    height:auto;
+}
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+.topnav a.active {
+    background-color: #4CAF50;
+    color: white;
+}
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
