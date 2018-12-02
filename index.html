@@ -1,374 +1,7 @@
-<script src="new.js">
-    let nodeTemplate = `
-        <div class="node">
-        <p class="nodetext"> MLP </p>
-        <span class="port" data-type="input"></span>
-        <span class="port" data-type="output"></span>
-        </div>
-        `;
-    
-    var dragOrigin = null;
-    var mousex = null;
-    var mousey = null;
-    
-    var dragOffset = null;
-    var dragTarget = null;
-    
-    var portOrigin = null;
-    
-    document.addEventListener('mousemove', onMouseUpdate, false);
-    document.addEventListener('mouseenter', onMouseUpdate, false);
-    
-    var canvas = document.getElementById("canvas");
-    canvas.style.width='100%';
-    canvas.style.height='100%';
-    canvas.width  = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-    var ctx = canvas.getContext("2d");
-    
-    ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.lineTo(10, 10);
-    ctx.stroke();
-    
-    var nodes = {};
-    
-    class Node {
-        constructor (element) {
-            this.element = element;
-            this.outputs = [];
-            this.inputs = [];
-        }
-    }
-    
-    class Port {
-        constructor (element, type) {
-            this.element;
-            this.type = type;
-        }
-    }
-    
-    function offset(el) {
-        var rect = el.getBoundingClientRect(),
-        scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-        scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
-    }
-    
-    function toolbarAdd() {
-        var newNode = $(nodeTemplate);
-        $(".sandbox").prepend(newNode);
-        var nodeElement = newNode.get(0);
-        var nodeObject = new Node(nodeElement);
-        nodes[nodeElement] = nodeObject;
-    
-        nodeElement.addEventListener("mousedown", onClickNode);
-        nodeElement.addEventListener("mouseup", onReleaseNode);
-        let ports = nodeElement.getElementsByClassName("port");
-    
-        for (var i = 0; i<ports.length; i++) {
-            var port = ports[i];
-            port.addEventListener("mousedown", onClickPort);
-            port.addEventListener("mouseup", onReleasePort);
-            let portType = port.dataset.type;
-            var portObject = new Port(port, portType)
-            if (portType == "input") {
-                nodeObject.inputs.push(portObject);
-            } else {
-                nodeObject.outputs.push(portObject);
-            }
-        }
-    }
-    
-    function mouseDown(e) {
-    }
-    
-    function mouseMove(e) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        if (dragTarget) {
-            dragTarget.style.left = e.pageX-dragOffset[0];
-            dragTarget.style.top = e.pageY-dragOffset[1];
-        }
-        if (portOrigin) {
-            let canvOffset = offset(canvas);
-            ctx.translate(-canvOffset.left, -canvOffset.top)
-            ctx.beginPath();
-            let originPos = offset(portOrigin);
-            ctx.moveTo(originPos.left+8, originPos.top+8);
-            ctx.lineTo(e.pageX, e.pageY);
-            ctx.stroke();
-        }
-        ctx.setTransform(1, 0, 0, 1, 0, 0);
-    }
-    
-    function getNode(portElement) {
-        return portElement.parentElement;
-    }
-    
-    function onClickNode(e) {
-        var nodePos = offset(e.target);
-        dragOffset = [mousex-nodePos.left, mousey-nodePos.top];
-        dragTarget = e.target;
-    }
-    
-    function onReleaseNode(e) {
-        dragTarget = null;
-    }
-    
-    function onClickPort(e) {
-        portOrigin = e.target;
-    }
-    
-    function onReleasePort(e) {
-        if (getNode(e.target) == getNode(portOrigin)) {
-    
-        } else {
-            console.log("oof");
-        }
-    }
-    
-    function onMouseUpdate(e) {
-        mousex = e.pageX;
-        mousey = e.pageY;
-    }
-    
-    function onMouseUp(e) {
-        if (portOrigin) {
-            portOrigin = null;
-        }
-    }
-    
-    document.onmousedown = mouseDown;
-    document.addEventListener("mousemove",mouseMove);
-    document.addEventListener("mouseup",onMouseUp);
-    
-    </script>
-    <script type="text/javascript">
-     function blocks(){
-        var elem = document.getElementById("clickableBlock");
-        if (elem.value=="Tutorial") elem.value = "Back to Blocks";
-        else elem.value = "Tutorial";
-        var myClock = document.getElementById('clock');
-    
-        var displaySetting = myClock.style.display;
-        if (displaySetting == 'block') {
-          myClock.style.display = 'none';
-          clockButton.innerHTML = 'Show clock';
-        }
-        else {
-          myClock.style.display = 'block';
-          clockButton.innerHTML = 'Hide clock';
-        }
-     }
-     function blocks1(){
-         var taskbar=document.getElementById('taskbar');
-         taskbar.style.display='none';
-     }
-    </script>
-    <head>
-            <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-            <link rel="stylesheet" href="style.css">
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        </head>
-        <body>
-            <div class="topnav"  id="taskbar">
-                        <a> <input onclick="" type="button" value="Home" id=""></a>
-                        <a> <input onclick="blocks()" type="button" value="Tutorial" id="clickableBlock"></a>
-                        <a> <input onclick="blocks1()" type="button" value="Hide This Bar" id="barHide"></a>
-                        
-            </div>
-            <div class="heading">
-                <h1> MAHacks IV: Machine Learning Sandbox </h1>
-            </div>
-            <div class="toolbar">
-                <h1>   Neural Network Code Blocks 
-               
-                <h1 id> </h1>
-                </h1>
-            </div>
-            
-            <div class="toolbar">
-                 <div class="tooltip">
-                    <button onclick="toolbarAdd()" class="toolbar-button" >Add MLP</button>
-                    
-                    <span class="tooltiptext">This type of neural network makes a prediction based on the input,
-                         and is trained by telling the network how wrong or right it is and
-                          adjusting the results based on the accuracy of the network.</span>
-                 </div>
-                 <div class="tooltip">
-                    <button onclick="toolbarAdd()" class= "toolbar-button" > Add Normalizer</button>
-                    
-                    <span class="tooltiptext">Tooltip text</span>
-                 </div>
-            </div>
-            <div id="clock" class="myLife"> Hey everybody this is a simulator that can help
-                you build a neural network. no coding experiance required but common sense is 
-                reconmended :) </div>
-            <div class="sandbox">
-                <canvas class="sandbox-canvas" id="canvas"></canvas>
-            </div>
-        </body>
-        <footer>
-            <script src="main.js"></script>
-        </footer>
-        <style>
-            div#taskbar{
-                display:block;
-            }
-            div#clock {
-                display:none;
-            }   
-        </style>
-    
-<script src="new.js">
-let nodeTemplate = `
-    <div class="node">
-    <p class="nodetext"> MLP </p>
-    <span class="port" data-type="input"></span>
-    <span class="port" data-type="output"></span>
-    </div>
-    `;
-
-var dragOrigin = null;
-var mousex = null;
-var mousey = null;
-
-var dragOffset = null;
-var dragTarget = null;
-
-var portOrigin = null;
-
-document.addEventListener('mousemove', onMouseUpdate, false);
-document.addEventListener('mouseenter', onMouseUpdate, false);
-
-var canvas = document.getElementById("canvas");
-canvas.style.width='100%';
-canvas.style.height='100%';
-canvas.width  = canvas.offsetWidth;
-canvas.height = canvas.offsetHeight;
-var ctx = canvas.getContext("2d");
-
-ctx.beginPath();
-ctx.moveTo(0, 0);
-ctx.lineTo(10, 10);
-ctx.stroke();
-
-var nodes = {};
-
-class Node {
-    constructor (element) {
-        this.element = element;
-        this.outputs = [];
-        this.inputs = [];
-    }
-}
-
-class Port {
-    constructor (element, type) {
-        this.element;
-        this.type = type;
-    }
-}
-
-function offset(el) {
-    var rect = el.getBoundingClientRect(),
-    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
-}
-
-function toolbarAdd() {
-    var newNode = $(nodeTemplate);
-    $(".sandbox").prepend(newNode);
-    var nodeElement = newNode.get(0);
-    var nodeObject = new Node(nodeElement);
-    nodes[nodeElement] = nodeObject;
-
-    nodeElement.addEventListener("mousedown", onClickNode);
-    nodeElement.addEventListener("mouseup", onReleaseNode);
-    let ports = nodeElement.getElementsByClassName("port");
-
-    for (var i = 0; i<ports.length; i++) {
-        var port = ports[i];
-        port.addEventListener("mousedown", onClickPort);
-        port.addEventListener("mouseup", onReleasePort);
-        let portType = port.dataset.type;
-        var portObject = new Port(port, portType)
-        if (portType == "input") {
-            nodeObject.inputs.push(portObject);
-        } else {
-            nodeObject.outputs.push(portObject);
-        }
-    }
-}
-
-function mouseDown(e) {
-}
-
-function mouseMove(e) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    if (dragTarget) {
-        dragTarget.style.left = e.pageX-dragOffset[0];
-        dragTarget.style.top = e.pageY-dragOffset[1];
-    }
-    if (portOrigin) {
-        let canvOffset = offset(canvas);
-        ctx.translate(-canvOffset.left, -canvOffset.top)
-        ctx.beginPath();
-        let originPos = offset(portOrigin);
-        ctx.moveTo(originPos.left+8, originPos.top+8);
-        ctx.lineTo(e.pageX, e.pageY);
-        ctx.stroke();
-    }
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-}
-
-function getNode(portElement) {
-    return portElement.parentElement;
-}
-
-function onClickNode(e) {
-    var nodePos = offset(e.target);
-    dragOffset = [mousex-nodePos.left, mousey-nodePos.top];
-    dragTarget = e.target;
-}
-
-function onReleaseNode(e) {
-    dragTarget = null;
-}
-
-function onClickPort(e) {
-    portOrigin = e.target;
-}
-
-function onReleasePort(e) {
-    if (getNode(e.target) == getNode(portOrigin)) {
-
-    } else {
-        console.log("oof");
-    }
-}
-
-function onMouseUpdate(e) {
-    mousex = e.pageX;
-    mousey = e.pageY;
-}
-
-function onMouseUp(e) {
-    if (portOrigin) {
-        portOrigin = null;
-    }
-}
-
-document.onmousedown = mouseDown;
-document.addEventListener("mousemove",mouseMove);
-document.addEventListener("mouseup",onMouseUp);
-
-</script>
 <script type="text/javascript">
  function blocks(){
     var elem = document.getElementById("clickableBlock");
-    if (elem.value=="Tutorial") elem.value = "Back to Blocks";
+    if (elem.value=="Tutorial") elem.value = "Hide";
     else elem.value = "Tutorial";
     var myClock = document.getElementById('clock');
 
@@ -382,64 +15,49 @@ document.addEventListener("mouseup",onMouseUp);
       clockButton.innerHTML = 'Hide clock';
     }
  }
- function blocks1(){
-     var taskbar=document.getElementById('taskbar');
-     taskbar.style.display='none';
- }
 </script>
 <head>
-        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-        <link rel="stylesheet" href="style.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    </head>
-    <body>
-        <div class="topnav"  id="taskbar">
-                    <a> <input onclick="" type="button" value="Home" id=""></a>
-                    <a> <input onclick="blocks()" type="button" value="Tutorial" id="clickableBlock"></a>
-                    <a> <input onclick="blocks1()" type="button" value="Hide This Bar" id="barHide"></a>
-                    
-        </div>
-        <div class="heading">
-            <h1> MAHacks IV: Machine Learning Sandbox </h1>
-        </div>
-        <div class="toolbar">
-            <h1>   Neural Network Code Blocks 
-           
-            <h1 id> </h1>
-            </h1>
-        </div>
-        
-        <div class="toolbar">
-             <div class="tooltip">
-                <button onclick="toolbarAdd()" class="toolbar-button" >Add MLP</button>
-                
-                <span class="tooltiptext">This type of neural network makes a prediction based on the input,
-                     and is trained by telling the network how wrong or right it is and
-                      adjusting the results based on the accuracy of the network.</span>
-             </div>
-             <div class="tooltip">
-                <button onclick="toolbarAdd()" class= "toolbar-button" > Add Normalizer</button>
-                
-                <span class="tooltiptext">Tooltip text</span>
-             </div>
-        </div>
-        <div id="clock" class="myLife"> Hey everybody this is a simulator that can help
-            you build a neural network. no coding experiance required but common sense is 
-            reconmended :) </div>
-        <div class="sandbox">
-            <canvas class="sandbox-canvas" id="canvas"></canvas>
-        </div>
-    </body>
-    <footer>
-        <script src="main.js"></script>
-    </footer>
-    <style>
-        div#taskbar{
-            display:block;
-        }
-        div#clock {
-            display:none;
-        }   
-    </style>
-
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="heading">
+        <h1> MAHacks IV: Machine Learning Sandbox </h1>
+    </div>
+    <div class="subheading">
+        <h1>   Neural Network Code Blocks 
+        <input onclick="blocks()" type="button" value="Tutorial" id="clickableBlock"
+                class="toolbar-button">
+        <h1 id> </h1>
+        </h1>
+    </div>
     
+    <div class="toolbar">
+            <div class="tooltip">
+            <button onclick="toolbarAdd()" class="toolbar-button" >Add MLP</button>
+            
+            <span class="tooltiptext">This type of neural network makes a prediction based on the input,
+                    and is trained by telling the network how wrong or right it is and
+                    adjusting the results based on the accuracy of the network.</span>
+            </div>
+            <div class="tooltip">
+            <button onclick="toolbarAdd()" class= "toolbar-button" > Add Normalizer</button>
+            
+            <span class="tooltiptext">Tooltip text</span>
+            </div>
+    </div>
+    <div id="clock" class="myLife"> This is a sandbox that lets you experiment with various machine learning systems with no prior knowledge of AI or code. Enjoy! </div>
+    <div class="sandbox">
+        <canvas class="sandbox-canvas" id="canvas"></canvas>
+    </div>
+</body>
+<footer>
+    <script src="main.js"></script>
+</footer>
+<style>
+    div#clock {
+        display:none;
+    }   
+</style>
+
