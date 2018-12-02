@@ -42,8 +42,10 @@ function buildNode(node) {
     out.inputs = buildPortset(node.inputs);
     out.outputs = buildPortset(node.outputs);
     out.data = null;
-    if (out.name=="mlp") {
-        out.data = node.element.querySelector("#layerentry").value;
+    if (out.name=="mlp" || out.name=="mlp2") {
+        out.data = node.element.querySelector("#valuefield").value;
+    } else if (out.name=="auto") {
+        out.data = parseFloat(node.element.querySelector("#valuefield").value)/100;
     }
     return out;
 }
@@ -91,6 +93,7 @@ function upload2() {
 function upload3() {
     setReady(true);
     document.getElementById("stats").innerText=`Input dimension: ${getShape(files.xdata)[1]} / Output dimension: ${getShape(files.ydata)[1]}`;
+
 }
 
 function send(nodes) {

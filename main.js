@@ -14,15 +14,29 @@ let nodeTemplate = `
 let displayNames = {
     "mlp":"Simple Layer",
     "add":"Addition",
-    "ewm":"Multiplication"
+    "ewm":"Multiplication",
+    "auto":"Auto-Encoder",
+    "mlp2":"Multi-Layer"
 }
 
 let extras = {
     "mlp":`
-<input placeholder="Layer size" style="margin-right: 10px;" id="layerentry"></input>
+<input placeholder="Layer size" style="margin-right: 10px;" id="valuefield"></input>
 <div class="tooltip">
 <p style="display: inline-block;">?</p>
 <span class="tooltiptext"> The number of nodes in the layer. </span>
+</div>`,
+    "auto":`
+<input placeholder="Compression ratio" style="margin-right: 10px;" id="valuefield"></input>
+<div class="tooltip">
+<p style="display: inline-block;">?</p>
+<span class="tooltiptext"> What percentage of the input to use </span>
+</div>`,
+    "mlp2":`
+<input placeholder="Parameters" style="margin-right: 10px;" id="valuefield"></input>
+<div class="tooltip">
+<p style="display: inline-block;">?</p>
+<span class="tooltiptext"> Separated by commas </span>
 </div>`
 }
 
