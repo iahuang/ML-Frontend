@@ -6,27 +6,25 @@
 </head>
 
 <body>
-    <div class="topnav" id="taskbar">
-        <a> <input onclick="" type="button" value="Home" id=""></a>
+    <div class="topnav " id="taskbar">
+        <a> <input onclick="" type="button" value="Home" id="Die"></a>
         <a><input onclick="blocks()" type="button" value="Tutorial" id="clickableBlock"></a>
-
+        <a><div id="clock" class="myLife buffersmall"> Hey everybody this is a simulator that can help
+                you build a neural network. no coding experience required but common sense is
+                reconmended :) </div> </a>
     </div>
     <input onclick="blocks1()" type="button" value="Hide the Bar" id="barHide" class= "test">
-    <div class="heading">
+    <div class="heading ">
         <h1> MAHacks IV: Machine Learning Sandbox </h1>
-        <div class="tooltip">
-                <button onclick="upload(nodes);" class="toolbar-button upload"> Upload</button>
-                <span class="tooltiptext"> Upload your sample data set to be processed by the neural network</span>
-        </div>
     </div>
-    <div class="toolbar">
+    <div class="toolbar floatLeft1">
         <h1> Neural Network Code Blocks
 
             <h1 id> </h1>
         </h1>
     </div>
 
-    <div class="toolbar">
+    <div class="toolbar floatLeft">
         <div class="tooltip">
             <button onclick="toolbarAdd('mlp', 1, 1)" class="toolbar-button">MLP</button>
 
@@ -48,10 +46,15 @@
                  normalization will take 2 inputs of 1-1000 and 1-10 and normalize both of them to 0-1 with the larger ranges having 
                  more decimal places</span>
         </div>
+        <div class="tooltip buffer">
+                <button onclick="upload(nodes);" class="toolbar-button upload"> Upload</button>
+                <span class="tooltiptext"> Upload your sample data set to be processed by the neural network</span>
+        </div>
+        <div class="tooltip">
+                <button onclick="upload(nodes);" class="toolbar-button upload"> Predict </button>
+                <span class="tooltiptext"> This button will start the processing of your data set</span>
+        </div>
     </div>
-    <div id="clock" class="myLife"> Hey everybody this is a simulator that can help
-        you build a neural network. no coding experiance required but common sense is
-        reconmended :) </div>
     <p id="status"></p>
     <div class="sandbox">
         <canvas class="sandbox-canvas" id="canvas"></canvas>

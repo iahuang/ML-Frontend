@@ -14,11 +14,12 @@ h1 {
     padding-bottom: 40px;
     width:100%;
     height: 40px;
+    z-index: 1;
 }
 .test{
 position:fixed;
 top:0px;
-left:270px;
+left:120px;
 z-index: 100;
 }
 .testes{
@@ -116,13 +117,6 @@ body {
     position: absolute;
     z-index: 2;
 }
-.myLife {
-    display: none;
-    font-family: 'Ubuntu', sans-serif;
-
-    color: #55DDE0;
-    
-}
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
@@ -171,9 +165,7 @@ button {
     color: #b2b2b6;
     border-radius: 10px;
 }
-.tooltip {
-    border-bottom: 1px dotted black;
-}
+
 .inline{
     display: inline-block;
     padding-left: 400px;
@@ -203,14 +195,14 @@ button {
 }
 
 .topnav {
-    background-color: #D3D3D3;
+    background-color: #333;
     overflow: hidden;
     position: fixed;
     top:0px;
     box-sizing: content-box; 
     width:105%;
     height:auto;
-    display:inline-block
+    z-index: 100;
 }
 .topnav a {
     float: left;
@@ -218,10 +210,8 @@ button {
     text-align: center;
     display: inline;
     width: max-content;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-    height:auto;
+    font-family: 'Ubuntu', sans-serif;
+    color: #55DDE0;
 }
 p {
     font-family: Arial, Helvetica, sans-serif;
@@ -247,4 +237,27 @@ p {
 .topnav a.active {
     background-color: #4CAF50;
     color: white;
+}
+
+.buffer {
+    padding-left:30px;
+    color: #4CAF50;
+}
+.floatLeft{
+    float: left;
+    top: 110px;
+    position: fixed;
+    padding-left: 800px;
+    background-color: rgb(46, 50, 66);
+    padding-top: 40px;
+}
+.floatLeft1{
+    float: left;
+    top: 40px;
+    position: fixed;
+    padding-left: 800px;
+    padding-bottom: 60px;
+}
+.buffersmall{
+    padding-left: 100px;
 }
