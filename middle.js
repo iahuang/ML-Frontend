@@ -23,7 +23,7 @@ socket.on('prediction', function(data){
         let line = data[i];
         out.push(line.join(", "));
     }
-    return out.join("\n");
+    download("prediction.csv", out.join("\n"));
 });
 socket.on('disconnect', function(){});
 
