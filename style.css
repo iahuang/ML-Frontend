@@ -40,6 +40,7 @@ h1 {
     border-radius: 10px;
     padding: 10px;
     box-shadow: 0 0 4px #000000;
+    user-select: none;
 }
 button {
     border-style: hidden;
@@ -58,6 +59,14 @@ button {
     display: inline-block;
     border-style: solid;
     border-color: #33658A
+}
+.portspan {
+    display: inline-block;
+
+}
+.portspan#outputs {
+    position: relative;
+    left: 80%;
 }
 .sandbox-canvas {
     width: 100%;
