@@ -1,0 +1,68 @@
+<head>
+        <script src="socket.io.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+    
+    <body>
+        <div class="topnav" id="taskbar">
+            <a><form action="index.html" method="get">
+                <input type="submit" value="Home" 
+                name="homepage" id="homepage" />
+            </form></a>
+            <a><input onclick="blocks()" type="button" value="Tutorial" id="clickableBlock"></a>
+            <a><form action="results.html" method="get">
+                <input type="submit" value="Results" 
+                     name="Submit" id="frm1_submit" />
+            </form></a>
+            <a><form action="results.html" method="get">
+                    <input type="submit" value="Terminal" 
+                         name="terminal" id="terminal" />
+            </form></a>
+    
+        </div>
+        <input onclick="blocks1()" type="button" value="Hide This Bar" id="barHide" class= "test">
+        <div class="heading">
+            <h1> MAHacks IV: Machine Learning Sandbox </h1>
+        </div>
+        <div class="toolbar">
+            <h1> Here are your results  </h1>
+        </div>
+        <div class="sandbox">
+            <canvas class="sandbox-canvas" id="canvas"></canvas>
+        </div>
+    </body>
+    <footer>
+        <script type="text/javascript">
+            function blocks1() {
+                var elem = document.getElementById("barHide");
+                if (elem.value == "Hide the Bar") elem.value = "Show the Bar";
+                else elem.value = "Hide the Bar";
+                var myClock = document.getElementById('taskbar');
+    
+                var displaySetting = myClock.style.display;
+                if (displaySetting == 'block') {
+                    myClock.style.display = 'none';
+    
+                }
+                else {
+                    myClock.style.display = 'block';
+                    clockButton.innerHTML = 'Hide clock';
+                }
+            }
+        </script>
+        <script src="main.js"></script>
+        <script src="middle.js"></script>
+    </footer>
+    <style>
+        div#taskbar {
+            display: block;
+        }
+        div#barHide{
+            display: block;
+        }
+        div#clock {
+            display: none;
+        }
+    </style>
