@@ -28,14 +28,22 @@
 
     <div class="toolbar">
         <div class="tooltip">
-            <button onclick="toolbarAdd()" class="toolbar-button">Add MLP</button>
+            <button onclick="toolbarAdd('mlp', 1, 1)" class="toolbar-button">MLP</button>
 
             <span class="tooltiptext">This type of neural network makes a prediction based on the input,
                 and is trained by telling the network how wrong or right it is and
                 adjusting the results based on the accuracy of the network.</span>
         </div>
         <div class="tooltip">
-            <button onclick="toolbarAdd()" class="toolbar-button"> Add Normalizer</button>
+                <button onclick="toolbarAdd('add', 2, 1)" class="toolbar-button"> + </button>
+                <span class="tooltiptext"> Addition takes the data from two outputs and returns the sum </span>
+            </div>
+        <div class="tooltip">
+                <button onclick="toolbarAdd('ewm', 2, 1)" class="toolbar-button"> x </button>
+                <span class="tooltiptext"> Multiplication takes the data from two outputs and returns the product </span>
+            </div>
+        <div class="tooltip">
+            <button onclick="toolbarAdd('null', 1, 1)" class="toolbar-button"> Normalizer</button>
             <span class="tooltiptext"> Normalization takes the inputs of a function and changes them so that the scale is similar to the both of them. For example,
                  normalization will take 2 inputs of 1-1000 and 1-10 and normalize both of them to 0-1 with the larger ranges having 
                  more decimal places</span>
@@ -44,6 +52,7 @@
     <div id="clock" class="myLife"> Hey everybody this is a simulator that can help
         you build a neural network. no coding experiance required but common sense is
         reconmended :) </div>
+    <p id="status"></p>
     <div class="sandbox">
         <canvas class="sandbox-canvas" id="canvas"></canvas>
     </div>
