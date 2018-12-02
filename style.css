@@ -1,11 +1,14 @@
 h1 {
     font-family: 'Ubuntu', sans-serif;
     color: rgb(173, 173, 173);
+    display: inline-block;
+
 }
 .heading {
+    display: inline-block;
     background-color: rgb(46, 50, 66);
     padding:10px;
-    font-size: 28;
+    font-size: 20;
     size: 70px;
     padding-top: px;
     padding-bottom: 40px;
@@ -25,7 +28,9 @@ z-index: 100;
     padding-left: 60px;
     padding-top: 0px;
     z-index: 0;
+    width: 100%;
 }
+
 .sandbox {
     background-color: rgb(55, 60, 80);
     height: 100%;
@@ -39,7 +44,7 @@ z-index: 100;
     width: 200px;
     border-radius: 10px;
     padding: 10px;
-    box-shadow: 0 0 4px #000000;
+    box-shadow: 0 0 10px #000000;
     user-select: none;
 }
 button {
@@ -83,8 +88,13 @@ body {
     background-color: #6f717a;
     font-size: 20;
     padding: 10px;
+
     color: #b2b2b6;
     border-radius: 10px;
+}
+.upload {
+    background-color: #4CAF50;
+    color: #ddd;
 }
 .tooltip {
     position: relative;
@@ -144,34 +154,7 @@ body {
     padding-bottom: 40px;
     height: 40px;
 }
-.subheading{
-    background-color:#33658A;
-    padding:70px;
-    font-size: 14;
-    padding-top: 10px;
-    padding-bottom: 35px;
-    height: 20px;
-}
-.toolbar {
-    background-color: #33658A;
-    padding:20px;
-    padding-left: 60px;
-    padding-top: 0px;
-}
-.sandbox {
-    background-color: #F26419;
-    height: 100%;
-    margin: 0px;
-}
-.node {
-    position: absolute;
-    background-color: #6f717a;
-    height: 120px;
-    width: 200px;
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 0 0 4px #000000;
-}
+
 button {
     border-style: hidden;
     font-family: Arial, Helvetica, sans-serif;

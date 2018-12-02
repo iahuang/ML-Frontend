@@ -22,6 +22,10 @@
     <input onclick="blocks1()" type="button" value="Hide This Bar" id="barHide" class= "test">
     <div class="heading">
         <h1> MAHacks IV: Machine Learning Sandbox </h1>
+        <div class="tooltip">
+                <button onclick="upload(nodes);" class="toolbar-button upload"> Upload</button>
+                <span class="tooltiptext"> Upload your sample data set to be processed by the neural network</span>
+        </div>
     </div>
     <div class="toolbar">
         <h1> Neural Network Code Blocks
@@ -43,10 +47,6 @@
             <span class="tooltiptext"> Normalization takes the inputs of a function and changes them so that the scale is similar to the both of them. For example,
                  normalization will take 2 inputs of 1-1000 and 1-10 and normalize both of them to 0-1 with the larger ranges having 
                  more decimal places</span>
-        </div>
-        <div class="tooltip">
-                <button onclick="toolbarAdd()" class="toolbar-button"> Upload</button>
-                <span class="tooltiptext"> Upload your sample data set to be processed by the neural network</span>
         </div>
     </div>
     <div id="clock" class="myLife"> Hey everybody this is a simulator that can help
