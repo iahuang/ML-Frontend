@@ -1,21 +1,3 @@
-<script type="text/javascript">
- function blocks(){
-    var elem = document.getElementById("clickableBlock");
-    if (elem.value=="Tutorial") elem.value = "Hide";
-    else elem.value = "Tutorial";
-    var myClock = document.getElementById('clock');
-
-    var displaySetting = myClock.style.display;
-    if (displaySetting == 'block') {
-      myClock.style.display = 'none';
-      clockButton.innerHTML = 'Show clock';
-    }
-    else {
-      myClock.style.display = 'block';
-      clockButton.innerHTML = 'Hide clock';
-    }
- }
-</script>
 <head>
     <script src="socket.io.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
@@ -23,14 +5,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
+    <div class="topnav"  id="taskbar">
+                <a> <input onclick="" type="button" value="Home" id=""></a>
+                <a> <input onclick="blocks()" type="button" value="Tutorial" id="clickableBlock"></a>
+                <a> <input onclick="blocks1()" type="button" value="Hide This Bar" id="barHide"></a>
+                
+    </div>
     <div class="heading">
         <h1> MAHacks IV: Machine Learning Sandbox </h1>
     </div>
-    <div class="subheading">
+    <div class="toolbar">
         <h1>   Neural Network Code Blocks 
-        <input onclick="blocks()" type="button" value="Tutorial" id="clickableBlock"
-                class="toolbar-button">
-        <button class="toolbar-button" onclick="upload(nodes)">Upload</button>
+        
         <h1 id> </h1>
         </h1>
     </div>
@@ -49,7 +35,9 @@
             <span class="tooltiptext">Tooltip text</span>
             </div>
     </div>
-    <div id="clock" class="myLife"> This is a sandbox that lets you experiment with various machine learning systems with no prior knowledge of AI or code. Enjoy! </div>
+    <div id="clock" class="myLife"> Hey everybody this is a simulator that can help
+        you build a neural network. no coding experiance required but common sense is 
+        reconmended :) </div>
     <div class="sandbox">
         <canvas class="sandbox-canvas" id="canvas"></canvas>
     </div>
@@ -59,8 +47,12 @@
     <script src="middle.js"></script>
 </footer>
 <style>
+    div#taskbar{
+        display:block;
+    }
     div#clock {
         display:none;
     }   
 </style>
 
+    
