@@ -64,3 +64,6 @@ function upload(nodes) {
 function _upload(nodes) {
     socket.emit('uploadgraph', [files.xdata, files.ydata, buildGraph(nodes)]);
 }
+function predict(node){
+    
+}
