@@ -46,7 +46,7 @@ function readFileInput(id, exit) {
         var text = fr.result;
         files[id] = text;
         if (exit) {
-            _upload(nodes);
+            exit();
         }
     }
     fr.readAsText(f);
@@ -56,11 +56,13 @@ function readFileInput(id, exit) {
 
 function upload(nodes) {
     console.log("Uploading...");
-    readFileInput("xdata");
-    readFileInput("ydata", true);
+    readFileInput("xdata", upload2);
 
 }
+function upload2() {
+    readFileInput("ydata", upload3);
+}
 
-function _upload(nodes) {
+function upload3() {
     socket.emit('uploadgraph', [files.xdata, files.ydata, buildGraph(nodes)]);
 }
