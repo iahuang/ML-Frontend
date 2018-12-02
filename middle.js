@@ -6,6 +6,21 @@ socket.on('currentloss', function(data){
 socket.on('disconnect', function(){});
 
 var files = {"xdata":null, "ydata":null};
+var ready = false;
+
+function setReady(r) {
+    if (ready!=r) {
+        document.getElementById("tbutton").classList.toggle("disabled");
+        document.getElementById("pbutton").classList.toggle("disabled");
+        console.log(ready);
+        if (!ready) {
+            document.getElementById("stats").setAttribute("style","");
+        } else {
+            document.getElementById("stats").style.display = "none";
+        }
+    }
+    ready = r;
+}
 
 function buildPort(port) {
     var out = {};
@@ -26,6 +41,10 @@ function buildNode(node) {
     out.name = node.element.dataset.type;
     out.inputs = buildPortset(node.inputs);
     out.outputs = buildPortset(node.outputs);
+    out.data = null;
+    if (out.name=="mlp") {
+        out.data = node.element.querySelector("#layerentry").value;
+    }
     return out;
 }
 
@@ -54,6 +73,12 @@ function readFileInput(id, exit) {
     
 }
 
+function getShape(fData) {
+    fData = $.trim(fData);
+    let lines = fData.split("\n");
+    return [lines.length,lines[0].split(",").length];
+}
+
 function upload(nodes) {
     console.log("Uploading...");
     readFileInput("xdata", upload2);
@@ -64,7 +89,14 @@ function upload2() {
 }
 
 function upload3() {
-    socket.emit('uploadgraph', [files.xdata, files.ydata, buildGraph(nodes)]);
+    setReady(true);
+    document.getElementById("stats").innerText=`Input dimension: ${getShape(files.xdata)[1]} / Output dimension: ${getShape(files.ydata)[1]}`;
+}
+
+function send(nodes) {
+    if (ready) {
+        socket.emit('uploadgraph', [files.xdata, files.ydata, buildGraph(nodes)]);
+    }
 }
 function predict(node){
     

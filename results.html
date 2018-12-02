@@ -39,16 +39,17 @@
                 var elem = document.getElementById("barHide");
                 if (elem.value == "Hide the Bar") elem.value = "Show the Bar";
                 else elem.value = "Hide the Bar";
-                var myClock = document.getElementById('taskbar');
+                var taskbar = document.getElementById('taskbar');
     
                 var displaySetting = myClock.style.display;
                 if (displaySetting == 'block') {
-                    myClock.style.display = 'none';
+                    taskbar.style.display = 'none';
+                    elem.value='Show the Bar'
     
                 }
                 else {
-                    myClock.style.display = 'block';
-                    clockButton.innerHTML = 'Hide clock';
+                    taskbar.style.display = 'block';
+                    elem.value = 'Hide the Bar';
                 }
             }
         </script>

@@ -47,16 +47,21 @@
             </div>
         <div class="tooltip ">
                 <button onclick="upload(nodes);" class="toolbar-button upload"> Upload</button>
-                <span class="tooltiptext"> Upload your sample data set to be processed by the neural network</span>
+                <span class="tooltiptext"> Upload your sample data </span>
         </div>
         <div class="tooltip">
-                <button onclick="predict(nodes);" class="toolbar-button upload"> Predict </button>
-                <span class="tooltiptext"> This button will start the processing of your data set</span>
+                <button onclick="send(nodes);" class="toolbar-button disabled" id="tbutton"> Train </button>
+                <span class="tooltiptext"> Fit your model to the data given </span>
+        </div>
+        <div class="tooltip">
+                <button onclick="predict(nodes);" class="toolbar-button disabled" id="pbutton"> Predict </button>
+                <span class="tooltiptext"> Use the trained model to generate new Y data </span>
         </div>
     </div>
-    <span>
-        <p style="display:inline-block;padding:10px;">X Data</p><input type="file", id="xdata">
-        <p style="display:inline-block;padding:10px;">Y Data</p><input type="file", id="ydata">
+    <span class="dataset-bar">
+        <p>X Data</p><input type="file" id="xdata" class="fileupload" onchange="setReady(false)">
+        <p>Y Data</p><input type="file" id="ydata" class="fileupload" onchange="setReady(false)">
+        <p id="stats" style="display:none;">You're not supposed to see this</p>
     </span>
     <div id="clock" class="myLife"> Hey everybody this is a simulator that can help
         you build a neural network. no coding experiance required but common sense is
@@ -116,6 +121,7 @@
     </script>
     <script src="main.js"></script>
     <script src="middle.js"></script>
+
 </footer>
 <style>
     div#taskbar {
