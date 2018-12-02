@@ -14,27 +14,25 @@
     <input onclick="blocks1()" type="button" value="Hide the Bar" id="barHide" class= "test">
     <div class="heading">
         <h1> MAHacks IV: Machine Learning Sandbox </h1>
-        <div class="tooltip">
-                <button onclick="upload(nodes);" class="toolbar-button upload"> Upload</button>
-                <span class="tooltiptext"> Upload your sample data set to be processed by the neural network</span>
-        </div>
     </div>
     <div class="toolbar">
         <h1> Neural Network Code Blocks
-
-            <h1 id> </h1>
         </h1>
     </div>
+    <div class="testes tooltip"> <button onclick="upload(nodes);" class=" testes toolbar-button upload"> Upload</button>
+        <span class="tooltiptext"> Upload your sample data set to be processed by the neural network</span>
+     </div>
 
     <div class="toolbar">
-        <div class="tooltip">
+
+        <div class="tooltip inline">
             <button onclick="toolbarAdd()" class="toolbar-button">Add MLP</button>
 
             <span class="tooltiptext">This type of neural network makes a prediction based on the input,
                 and is trained by telling the network how wrong or right it is and
                 adjusting the results based on the accuracy of the network.</span>
         </div>
-        <div class="tooltip">
+        <div class="tooltip inline ">
             <button onclick="toolbarAdd()" class="toolbar-button"> Add Normalizer</button>
             <span class="tooltiptext"> Normalization takes the inputs of a function and changes them so that the scale is similar to the both of them. For example,
                  normalization will take 2 inputs of 1-1000 and 1-10 and normalize both of them to 0-1 with the larger ranges having 
@@ -76,19 +74,22 @@
         }
         function blocks1() {
             var elem = document.getElementById("barHide");
-            if (elem.value == "Hide the Bar") elem.value = "Show the Bar";
-            else elem.value = "Hide the Bar";
             var myClock = document.getElementById('taskbar');
-
             var displaySetting = myClock.style.display;
-            if (displaySetting == 'block') {
-                myClock.style.display = 'none';
 
+// now toggle the clock and the button text, depending on current state
+            if (displaySetting == 'block') {
+    // clock is visible. hide it
+            myClock.style.display = 'none';
+    // change button text
+            elem.value = 'Hide Bar';
             }
             else {
-                myClock.style.display = 'block';
-                clockButton.innerHTML = 'Hide clock';
-            }
+    // clock is hidden. show it
+            myClock.style.display = 'block';
+    //      change button text
+            elem.value = 'Show Bar';
+            }   
         }
     </script>
     <script src="main.js"></script>
